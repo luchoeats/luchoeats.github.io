@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lucho Eats</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff8f0;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #f5a623;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    header img {
+      width: 150px;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      border-radius: 10px;
+    }
+    h2 {
+      color: #d35400;
+      margin-top: 30px;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      margin-right: 10px;
+      border-radius: 8px;
+    }
+    .item .info {
+      display: flex;
+      align-items: center;
+    }
+    button {
+      background: #f5a623;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #d35400;
+    }
+    #carrito {
+      margin-top: 30px;
+      padding: 15px;
+      background: #fdf6f1;
+      border-radius: 10px;
+    }
+    #carrito ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      background: #f5a623;
+      color: white;
+      border-top: 2px solid #e07d00;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="imagenes/luchoeats.png" alt="Lucho Eats Logo"/>
+    <h1>Comida con sabor auténtico</h1>
+  </header>
+
+  <main>
+    <h2>Platos principales</h2>
+
+    <div class="item">
+      <div class="info"><img src="imagenes/arepa de harina.jpg" alt="Arepa de Harina"/> Arepa E' Queso - $5000</div>
+      <button onclick="seleccionarPrincipal('Arepa E' Queso', 5000)">Añadir</button>
+    </div>
+    <div class="item">
+      <div class="info"><img src="imagenes/cayeye.jpg" alt="Cayeye"/> Cayeye - $7000</div>
+      <button onclick="seleccionarPrincipal('Cayeye', 7000)">Añadir</button>
+    </div>
+    <div class="item">
+      <div class="info"><img src="imagenes/moneditas.jpg" alt="Moneditas de Plátano"/> Moneditas de Plátano - $4000</div>
+      <button onclick="seleccionarPrincipal('Moneditas de Plátano', 4000)">Añadir</button>
+    </div>
+    <div class="item">
+      <div class="info"><img src="imagenes/patacones.jpg" alt="Patacones"/> Patacones - $5000</div>
+      <button onclick="seleccionarPrincipal('Patacones', 5000)">Añadir</button>
+    </div>
+    <div class="item">
+      <div class="info"><img src="imagenes/arepa-de-huevo.jpg" alt="Arepa de Huevo"/> Arepa de Huevo - $4000</div>
+      <button onclick="seleccionarPrincipal('Arepa de Huevo', 4000)">Añadir</button>
+    </div>
+    <div class="item">
+      <div class="info"><img src="imagenes/yuca.jpg" alt="Yuca"/> Yuca - $3000</div>
+      <button onclick="seleccionarPrincipal('Yuca', 3000)">Añadir</button>
+    </div>
+
+    <h2>Jugos cítricos 100% naturales</h2>
+
+    <div class="item"><div class="info"><img src="imagenes/maracuya.jpg" alt="Maracuyá"/> Maracuyá - $4000</div><button onclick="agregarAlCarrito('Jugo de Maracuyá', 4000)">Añadir</button></div>
+    <div class="item"><div class="info"><img src="imagenes/torombolo.jpg" alt="Torombolo"/> Torombolo - $4000</div><button onclick="agregarAlCarrito('Jugo de Torombolo', 4000)">Añadir</button></div>
+    <div class="item"><div class="info"><img src="imagenes/limonada.jpg" alt="Limonada"/> Limonada - $4000</div><button onclick="agregarAlCarrito('Limonada Natural', 4000)">Añadir</button></div>
+    <div class="item"><div class="info"><img src="imagenes/lulo.jpg" alt="Lulo"/> Lulo - $4000</div><button onclick="agregarAlCarrito('Jugo de Lulo', 4000)">Añadir</button></div>
+    <div class="item"><div class="info"><img src="imagenes/naranja.jpg" alt="Naranja"/> Naranja - $4000</div><button onclick="agregarAlCarrito('Jugo de Naranja', 4000)">Añadir</button></div>
+    <div class="item"><div class="info"><img src="imagenes/mandarina.jpg" alt="Mandarina"/> Mandarina - $7000</div><button onclick="agregarAlCarrito('Jugo de Mandarina', 7000)">Añadir</button></div>
+
+    <div id="carrito">
+      <h3>Carrito</h3>
+      <ul id="lista-carrito"></ul>
+      <strong>Total: $<span id="total">0</span></strong><br/>
+      <button onclick="reiniciarCarrito()">Reiniciar carrito</button><br/><br/>
+      <form action="https://formspree.io/f/mzzrravw" method="POST">
+        <input type="hidden" name="pedido" id="pedidoInput">
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+        <input type="text" name="direccion" placeholder="Tu dirección" required>
+        <button type="submit" style="margin-top: 10px;">Enviar pedido</button>
+      </form>
+    </div>
+
+    <div id="modalAdicionales" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="cerrarModal()">&times;</span>
+        <h3>¿Quieres adicionales?</h3>
+        <ul>
+          <li><button onclick="agregarAlCarrito('Chicharrón', 10000)">Chicharrón Adicional - $10000</button></li>
+          <li><button onclick="agregarAlCarrito('Huevos Revueltos', 5500)">Huevos Revueltos - $5500</button></li>
+          <li><button onclick="agregarAlCarrito('Hogao', 2500)">Hogao - $2500</button></li>
+          <li><button onclick="agregarAlCarrito('Arepa E' Queso Adicional', 5000)">Arepa Adicional - $5000</button></li>
+          <li><button onclick="agregarAlCarrito('Huevos Perico', 5500)">Huevos Perico - $5500</button></li>
+          <li><button onclick="agregarAlCarrito('Chorizo Artesanal', 5000)">Chorizo Artesanal - $5000</button></li>
+          <li><button onclick="agregarAlCarrito('Carne En Goulash', 12000)">Carne En Goulash - $12000</button></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    ¿Tienes algún problema con tu pedido? Escríbenos a <strong>luchoeats1@gmail.com</strong> 😉
+  </footer>
+
+  <script>
+    let total = 0;
+    const listaCarrito = document.getElementById('lista-carrito');
+    const totalElemento = document.getElementById('total');
+    const pedidoInput = document.getElementById('pedidoInput');
+    const modal = document.getElementById('modalAdicionales');
+
+    function agregarAlCarrito(nombre, precio) {
+      const item = document.createElement('li');
+      item.textContent = nombre + " - $" + precio;
+      listaCarrito.appendChild(item);
+      total += precio;
+      totalElemento.textContent = total;
+      actualizarFormulario();
+    }
+
+    function seleccionarPrincipal(nombre, precio) {
+      agregarAlCarrito(nombre, precio);
+      abrirModal();
+    }
+
+    function abrirModal() {
+      modal.style.display = "block";
+    }
+
+    function cerrarModal() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        cerrarModal();
+      }
+    }
+
+    function reiniciarCarrito() {
+      listaCarrito.innerHTML = "";
+      total = 0;
+      totalElemento.textContent = "0";
+      cerrarModal();
+      actualizarFormulario();
+    }
+
+    function actualizarFormulario() {
+      let mensaje = "";
+      const items = document.querySelectorAll("#lista-carrito li");
+      items.forEach(item => {
+        mensaje += item.textContent + "\\n";
+      });
+      mensaje += "Total: $" + total;
+      pedidoInput.value = mensaje;
+    }
+  </script>
+</body>
+</html>

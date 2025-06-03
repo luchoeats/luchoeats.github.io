@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lucho Eats</title>
+  <script>
+    function redirigirSegunHorario() {
+      const ahora = new Date();
+      const dia = ahora.getDay(); // 0 = Domingo, 5 = Viernes, 6 = Sábado
+      const hora = ahora.getHours();
+      const minutos = ahora.getMinutes();
+
+      let enHorario = false;
+
+      if (dia === 5 || dia === 6) {
+        // Viernes o Sábado: todo el día
+        enHorario = true;
+      } else if (dia === 0) {
+        // Domingo: hasta las 10:00 am
+        enHorario = hora < 10 || (hora === 10 && minutos === 0);
+      }
+
+      if (enHorario) {
+        window.location.href = "menu.html";
+      } else {
+        window.location.href = "fuera-de-horario.html";
+      }
+    }
+
+    window.onload = redirigirSegunHorario;
+  </script>
+</head>
+<body>
+  <p>Redirigiendo...</p>
+</body>
+</html>
